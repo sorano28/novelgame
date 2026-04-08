@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "title": "滅びのはてで、きみを思い出す",
+    "startSceneId": "chapter1_intro_01",
+    "fallbackEnding": "end4_fail"
+  },
+  "nodes": {
+    "chapter1_intro_01": {
+      "id": "chapter1_intro_01",
+      "chapterTitle": "Chapter 1 目覚め",
+      "type": "dialogue",
+      "background": "bg/ruins_awake.webp",
+      "speaker": "",
+      "text": "……冷たい。瓦礫の隙間で、{name}は目を開けた。",
+      "next": "chapter1_intro_02"
+    },
+    "chapter1_intro_02": {
+      "id": "chapter1_intro_02",
+      "chapterTitle": "Chapter 1 目覚め",
+      "type": "dialogue",
+      "speaker": "",
+      "text": "覚えているのは、誰かを探している感覚だけ。空は、色を失っていた。",
+      "effects": { "accept": 1 },
+      "next": "chapter1_choice_01"
+    },
+    "chapter1_choice_01": {
+      "id": "chapter1_choice_01",
+      "type": "choice",
+      "question": "瓦礫の向こうに見えた街を見て、どう感じた？",
+      "options": [
+        {
+          "text": "怖い。もう何も残っていない気がする",
+          "effects": { "blameOther": 1, "trust": -1 },
+          "next": "chapter2_city_01"
+        },
+        {
+          "text": "懐かしい。ここで誰かと笑っていた気がする",
+          "effects": { "memory": 1, "like": 1 },
+          "next": "chapter2_city_01"
+        },
+        {
+          "text": "何も感じない。とにかく進む",
+          "effects": { "accept": -1, "blameSelf": 1 },
+          "next": "chapter2_city_01"
+        }
+      ]
+    },
+    "chapter2_city_01": {
+      "id": "chapter2_city_01",
+      "chapterTitle": "Chapter 2 崩壊都市",
+      "type": "dialogue",
+      "background": "bg/city_ruin.webp",
+      "speaker": "生存者",
+      "text": "ここに来るなんて物好きだな。世界はもう終わってる。……あの子を探してるのか？",
+      "effects": { "trust": 1 },
+      "next": "chapter2_choice_01"
+    },
+    "chapter2_choice_01": {
+      "id": "chapter2_choice_01",
+      "type": "choice",
+      "question": "生存者にどう返す？",
+      "options": [
+        {
+          "text": "探している。大切な人なんだ",
+          "effects": { "like": 2, "trust": 1 },
+          "next": "chapter3_station_01"
+        },
+        {
+          "text": "なぜ世界は終わった？",
+          "effects": { "accept": 1, "memory": 1 },
+          "next": "chapter3_station_01"
+        },
+        {
+          "text": "誰のせいでこうなった？",
+          "effects": { "blameOther": 2 },
+          "next": "chapter3_station_01"
+        }
+      ]
+    },
+    "chapter3_station_01": {
+      "id": "chapter3_station_01",
+      "chapterTitle": "Chapter 3 廃駅",
+      "type": "dialogue",
+      "background": "bg/station.webp",
+      "speaker": "",
+      "text": "崩れた駅舎。床には、古い切符が落ちている。",
+      "next": "chapter3_choice_item"
+    },
+    "chapter3_choice_item": {
+      "id": "chapter3_choice_item",
+      "type": "choice",
+      "question": "切符をどうする？",
+      "options": [
+        {
+          "text": "拾う（記憶がよみがえる）",
+          "effects": { "memory": 2, "like": 1 },
+          "next": "chapter4_memory_01"
+        },
+        {
+          "text": "見なかったことにする",
+          "effects": { "accept": -1, "blameSelf": 1 },
+          "next": "chapter4_memory_01"
+        }
+      ]
+    },
+    "chapter4_memory_01": {
+      "id": "chapter4_memory_01",
+      "chapterTitle": "Chapter 4 記憶の日常",
+      "type": "dialogue",
+      "background": "bg/sea.webp",
+      "speaker": "恋人",
+      "text": "『ねえ、{name}。もし世界が壊れても、わたしを忘れないで』",
+      "effects": { "memory": 1, "like": 1 },
+      "next": "chapter6_lab_01"
+    },
+    "chapter6_lab_01": {
+      "id": "chapter6_lab_01",
+      "chapterTitle": "Chapter 6 廃研究施設",
+      "type": "dialogue",
+      "background": "bg/lab.webp",
+      "speaker": "ログ端末",
+      "text": "【記録】崩壊現象の中心には、被験者Lが存在する。抑制失敗。",
+      "effects": { "accept": 1, "memory": 2 },
+      "next": "chapter9_core_01"
+    },
+    "chapter9_core_01": {
+      "id": "chapter9_core_01",
+      "chapterTitle": "Chapter 9 崩壊中心地手前",
+      "type": "dialogue",
+      "background": "bg/core.webp",
+      "speaker": "",
+      "text": "空間が軋み、過去の声が混ざる。止められなかった夜が蘇る。",
+      "effects": { "blameSelf": 1 },
+      "next": "chapter11_reunion_01"
+    },
+    "chapter11_reunion_01": {
+      "id": "chapter11_reunion_01",
+      "chapterTitle": "Chapter 11 再会",
+      "type": "dialogue",
+      "speaker": "恋人",
+      "text": "『やっと来たね、{name}。……わたしを、どうするの？』",
+      "next": "chapter12_hidden_branch"
+    },
+    "chapter12_hidden_branch": {
+      "id": "chapter12_hidden_branch",
+      "type": "branch",
+      "conditions": [
+        {
+          "if": "flags.memory >= 5 && flags.blameSelf >= 2",
+          "next": "chapter12_final_choice_hidden"
+        }
+      ],
+      "defaultNext": "chapter12_final_choice"
+    },
+    "chapter12_final_choice": {
+      "id": "chapter12_final_choice",
+      "type": "endingChoice",
+      "question": "最後に、なにを選ぶ？",
+      "options": [
+        { "text": "恋人を殺す", "select": "kill" },
+        { "text": "恋人と共に滅びる", "select": "together" },
+        { "text": "世界を選ぶ", "select": "world" },
+        { "text": "救おうとする", "select": "save" }
+      ]
+    },
+    "chapter12_final_choice_hidden": {
+      "id": "chapter12_final_choice_hidden",
+      "type": "endingChoice",
+      "question": "最後に、なにを選ぶ？（隠し選択が解放された）",
+      "options": [
+        { "text": "恋人を殺す", "select": "kill" },
+        { "text": "恋人と共に滅びる", "select": "together" },
+        { "text": "世界を選ぶ", "select": "world" },
+        { "text": "救おうとする", "select": "save" },
+        { "text": "自分を裁く", "select": "suicide", "requires": "flags.memory >= 5 && flags.blameSelf >= 2" }
+      ]
+    },
+    "end1_kill": {
+      "id": "end1_kill",
+      "type": "ending",
+      "title": "END 1 / 殺す",
+      "text": "刃は震え、世界は静かに延命した。{name}は誰よりも深い傷だけを抱えて歩き出す。"
+    },
+    "end2_together": {
+      "id": "end2_together",
+      "type": "ending",
+      "title": "END 2 / 共に滅びる",
+      "text": "世界の最期に、ふたりは寄り添った。崩れゆく光の中で、きみの名だけが残る。"
+    },
+    "end3_world": {
+      "id": "end3_world",
+      "type": "ending",
+      "title": "END 3 / 世界を選ぶ",
+      "text": "きみを失っても、{name}は世界へ手を伸ばした。朝焼けの先で、誰かの明日が息を吹き返す。"
+    },
+    "end4_fail": {
+      "id": "end4_fail",
+      "type": "ending",
+      "title": "END 4 / 救えない",
+      "text": "手は届きそうで届かなかった。赦しきれない過去が、ふたりを別々の闇に沈める。"
+    },
+    "end5_suicide": {
+      "id": "end5_suicide",
+      "type": "ending",
+      "title": "END 5 / 自殺",
+      "text": "すべてを思い出した{name}は、自分に最後の判決を下した。静かな海だけが、その名を知っていた。"
+    }
+  }
+}
