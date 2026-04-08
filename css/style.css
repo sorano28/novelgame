@@ -1,0 +1,59 @@
+:root {
+  --bg-dark: #050711;
+  --panel: rgba(8, 10, 20, 0.68);
+  --line: rgba(210, 225, 255, 0.35);
+  --text: #edf0ff;
+  --accent: #9db5ff;
+  --danger: #b8757f;
+}
+body {
+  overflow: hidden;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  color: var(--text);
+  background: var(--bg-dark);
+}
+.app { width: 100vw; height: 100vh; position: relative; min-width: 1280px; }
+.background-layer,
+.fade-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.background-layer { transition: background-image 600ms ease, filter 500ms ease; }
+.fade-layer {
+  background: radial-gradient(circle at 60% 20%, rgba(180, 210, 255, 0.14), rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.screen.active { display: flex; }
+.title-screen,
+.ending-screen {
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  text-shadow: 0 0 24px rgba(210, 220, 255, 0.28);
+}
+.game-title { font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; letter-spacing: 0.08em; font-size: 48px; }
+.title-subtitle { opacity: 0.85; }
+.menu-column { display: flex; flex-direction: column; gap: 12px; }
+.menu-btn {
+  min-width: 260px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(4, 8, 18, 0.65);
+  color: var(--text);
+  cursor: pointer;
+  transition: 150ms ease;
+}
+.menu-btn:hover { background: rgba(157, 181, 255, 0.2); box-shadow: 0 0 18px rgba(157, 181, 255, 0.4); }
+.menu-btn.warn { border-color: rgba(184, 117, 127, 0.7); color: #ffd8df; }
+.game-screen { align-items: stretch; justify-content: stretch; }
+.hidden { display: none !important; }
